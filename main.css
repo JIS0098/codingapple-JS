@@ -2,7 +2,7 @@
     display: none !important;
 }
 .show{
-    display: block  !important;
+    display: block !important ;
 }
 .black-bg {
     width : 100%;
@@ -11,15 +11,21 @@
     background : rgba(0,0,0,0.5);
     z-index : 5;
     padding: 30px;
-    display: none;
-    
+    visibility: hidden;
+    opacity: 0;
+    height: 0%;
+    transition: all 0.5s;
   }
+
+  .login{
+    visibility: visible;
+    height: 400px;
+    opacity: 1;
+}
+
   .white-bg {
     background: white;
     border-radius: 5px;
     padding: 30px;
   }
   
-.login{
-    display: block;
-}
