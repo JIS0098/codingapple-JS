@@ -52,11 +52,33 @@
       <li class="list-group-item">A fourth item</li>
       <li class="list-group-item">And a fifth one</li>
     </ul>
-    <button class="login-btn">로그인</button>
+    <div>
+      <button class="login-btn">로그인</button>
+    </div>
 
     <div class="alert alert-danger">
       <span class="count">5</span>초 이내 구매시 사은품 증정
     </div>
+
+    <div style="overflow: hidden">
+      <div class="slide-container">
+        <div class="slide-box">
+          <img src="./car1.png" />
+        </div>
+        <div class="slide-box">
+          <img src="./car2.png" />
+        </div>
+        <div class="slide-box">
+          <img src="./car3.png" />
+        </div>
+      </div>
+    </div>
+
+    <button class="slide-1">1</button>
+    <button class="slide-2">2</button>
+    <button class="slide-3">3</button>
+    <button class="next">다음</button>
+    <button class="before">이전</button>
 
     <script>
       $(".navbar-toggler").on("click", function () {
@@ -70,7 +92,8 @@
         e.preventDefault();
         $(".black-bg").toggleClass("login");
       });
-
+    </script>
+    <script>
       $("form").on("submit", function (e) {
         var id입력값 = document.getElementById("email").value;
         var paw입력값 = document.getElementById("password").value;
@@ -78,7 +101,7 @@
         if (id입력값 == "") {
           alert("아이디를 입력해주세요");
           e.preventDefault();
-        } else if (/\S+@\S+\.\S+/.test(id입력값)==false) {
+        } else if (/\S+@\S+\.\S+/.test(id입력값) == false) {
           alert("이메일 형식에 맞게 입력해주세요");
           e.preventDefault();
         } else if (paw입력값 == "") {
@@ -92,7 +115,8 @@
           e.preventDefault();
         }
       });
-
+    </script>
+    <script>
       var count = 5;
       setInterval(function () {
         if (count == 0) {
@@ -110,6 +134,42 @@
         } else {
           $(".badge").html("Light 🔄");
         }
+      });
+    </script>
+    <script>
+
+      var 지금사진 = 1;
+      var 사진갯수 = 3;
+
+      $(".next").on("click", function () {
+        if(사진갯수==지금사진){
+            $(".slide-container").css("transform", `translateX(-${사진갯수-1}00vw)`);
+        }else{
+            $(".slide-container").css("transform", `translateX(-${지금사진}00vw)`);
+            지금사진++;
+        }
+      });
+      $(".before").on("click", function () {
+        if(지금사진==1){
+            $(".slide-container").css("transform", `translateX(0vw)`);
+        }else{  
+            지금사진--;
+        $(".slide-container").css("transform", `translateX(-${지금사진-1}00vw)`);
+        }
+      });
+      
+
+      $(".slide-1").on("click", function () {
+        지금사진 = 1
+        $(".slide-container").css("transform", "translateX(0)");
+      });
+      $(".slide-2").on("click", function () {
+        지금사진 = 2
+        $(".slide-container").css("transform", "translateX(-100vw)");
+      });
+      $(".slide-3").on("click", function () {
+        지금사진 = 3
+        $(".slide-container").css("transform", "translateX(-200vw)");
       });
     </script>
 
