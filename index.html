@@ -1,93 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="main.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+    <link rel="stylesheet" href="main.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
     <title>Hello, world!</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-</head>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </head>
 
-<body>
-    <div class="black-bg ">
-        <div class="white-bg">
-            <h4>로그인하세요</h4>
-            <form action="success.html">
-                <div class="mb-3">
-                    <input type="text" class="form-control" id="email">
-                </div>
-                <div class="mb-3">
-                    <input type="password" class="form-control" id="password">
-                </div>
-                <button type="submit" class="btn btn-primary " id="send">전송</button>
-                <button class="btn btn-danger " id="close">닫기</button>
-            </form>
-        </div>
+  <body>
+    <div class="black-bg">
+      <div class="white-bg">
+        <h4>로그인하세요</h4>
+        <form action="success.html">
+          <div class="mb-3">
+            <input type="text" class="form-control" id="email" />
+          </div>
+          <div class="mb-3">
+            <input type="password" class="form-control" id="password" />
+          </div>
+          <button type="submit" class="btn btn-primary" id="send">전송</button>
+          <button class="btn btn-danger" id="close">닫기</button>
+        </form>
+      </div>
     </div>
 
     <nav class="navbar navbar-light bg-light">
-        <div class="container-fluid">
-            <span class="navbar-brand">Navbar</span>
-            <span class="badge bg-dark">Dark 🔄</span>
-            <button class="navbar-toggler" type="button">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
+      <div class="container-fluid">
+        <span class="navbar-brand">Navbar</span>
+        <span class="badge ms-auto mx-3 bg-dark">Dark 🔄</span>
+        <button class="navbar-toggler" type="button">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
     </nav>
     <ul class="list-group">
-        <li class="list-group-item">An item</li>
-        <li class="list-group-item">A second item</li>
-        <li class="list-group-item">A third item</li>
-        <li class="list-group-item">A fourth item</li>
-        <li class="list-group-item">And a fifth one</li>
+      <li class="list-group-item">An item</li>
+      <li class="list-group-item">A second item</li>
+      <li class="list-group-item">A third item</li>
+      <li class="list-group-item">A fourth item</li>
+      <li class="list-group-item">And a fifth one</li>
     </ul>
     <button class="login-btn">로그인</button>
 
+    <div class="alert alert-danger">
+      <span class="count">5</span>초 이내 구매시 사은품 증정
+    </div>
+
     <script>
-        $('.navbar-toggler').on('click',
-            function () {
-                $('.list-group').toggleClass('show');
-            })
+      $(".navbar-toggler").on("click", function () {
+        $(".list-group").toggleClass("show");
+      });
 
-        $('.login-btn').on('click',
-            function () {
-                $('.black-bg').addClass('login')
-            })
-        $('#close').on('click', function (e) {
-            e.preventDefault();
-            $('.black-bg').toggleClass('login');
-        })
+      $(".login-btn").on("click", function () {
+        $(".black-bg").addClass("login");
+      });
+      $("#close").on("click", function (e) {
+        e.preventDefault();
+        $(".black-bg").toggleClass("login");
+      });
 
-        $('#send').on('click', function (e) {
-            if (document.getElementById("email").value == '') {
-                alert("아이디를 입력해주세요")
-            } else if (document.getElementById("password").value == '') {
-                alert("비밀번호를 입력해주세요")
-            } else if (document.getElementById("password").value.length < 6)
-                alert("6자리 이상의 비밀번호를 입력해주세요")
-        })
+      $("form").on("submit", function (e) {
+        var id입력값 = document.getElementById("email").value;
+        var paw입력값 = document.getElementById("password").value;
 
-        var count = 0;
+        if (id입력값 == "") {
+          alert("아이디를 입력해주세요");
+        } else if (/\S+@\S+\.\S+/.test(id입력값)==false) {
+          alert("이메일 형식에 맞게 입력해주세요");
+        } else if (paw입력값 == "") {
+          alert("비밀번호를 입력해주세요");
+        } else if (paw입력값.length < 6) {
+          alert("6자리 이상의 비밀번호를 입력해주세요");
+        } else if (/[A-Z]/.test(paw입력값) == false) {
+          alert("대문자를 포함한 비밀번호를 입력해주세요");
+        }
+      });
 
-        $('.badge').on('click',function(){
-            count ++;
-            if(count%2===0){
-                $('.badge').html('Dark 🔄')
-            }else{
-                $('.badge').html('Light 🔄')
-            }
-        })
+      var count = 5;
+      setInterval(function () {
+        if (count == 0) {
+          $(".alert").css("display", "none");
+        } else {
+          count--;
+          $(".count").html(count);
+        }
+      }, 1000);
+
+      $(".badge").on("click", function () {
+        count++;
+        if (count % 2 === 0) {
+          $(".badge").html("Dark 🔄");
+        } else {
+          $(".badge").html("Light 🔄");
+        }
+      });
     </script>
 
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
-</body>
-
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
