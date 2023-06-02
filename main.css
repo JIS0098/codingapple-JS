@@ -47,7 +47,7 @@
   }
 
   .login{
-    margin-top: 70px;
+   z-index: 6;
     visibility: visible;
     height: 400px;
     opacity: 1;
