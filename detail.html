@@ -20,7 +20,19 @@
   </head>
 
   <body>
+    <div class="container mt-3">
+      <div class="card p-3">
+        <span>상품명</span>
+        <span>가격</span>
+      </div>
+    </div> 
     
+    <script>
+      var car2 = { name : '소나타', price : 50000 } 
+      $('span').eq(0).html(car2.name)
+      $('span').eq(1).html(car2.price)
+    </script>
+
     <style>
         ul.list {
           list-style-type: none;
