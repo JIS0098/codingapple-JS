@@ -75,3 +75,7 @@
   .lorem-line{
     height: 5px;
   }
+
+  .form-hide{
+    display: none;
+  }
