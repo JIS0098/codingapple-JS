@@ -32,6 +32,7 @@
       <select class="form-select mt-2">
         <option>모자</option>
         <option >셔츠</option>
+        <option >바지</option>
       </select>
       <select class="form-select form-hide mt-2">
         <option>95</option>
@@ -44,18 +45,26 @@
       $("span").eq(0).html(car2.name);
       $("span").eq(1).html(car2.price);
 
-     
-
-      $('.form-select').eq(0).on("input",function(){
-
-        var value= $('.form-select').eq(0).val();
+      var pants = [28, 30, 32];
+      var shirt = [90, 95, 100];
+      $('.form-select').eq(0).on("input",function(e){
+        var value= e.target.value;
+        var 상품선택 = $('.form-select').eq(1)
         if( value=='셔츠'){
-        $('.form-select').eq(1).removeClass('form-hide');
-        }else{
-          $('.form-select').eq(1).addClass('form-hide');
-        }
+          상품선택.removeClass("form-hide");
+          상품선택.html('');
+          shirt.forEach(function(size){
+            상품선택.append(`<option>${size}</option>`);
+          })
+        }else if( value=='바지'){
+          상품선택.removeClass("form-hide");
+          상품선택.html('');
+          pants.forEach((size)=>{
+            상품선택.append(`<option>${size}</option>`);
+          })
+        } 
       })
-      
+
       
         
       
