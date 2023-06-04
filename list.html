@@ -29,6 +29,16 @@
   <div class="container">
     <button class="btn btn-danger">더보기</button>
   </div>
+  <div class="container">
+    <button class="btn btn-danger" id="price">낮은가격순</button>
+  </div>
+  <div class="container">
+    <button class="btn btn-danger" id="다나가">다나가순</button>
+  </div>
+  <div class="container">
+    <button class="btn btn-danger" id="6만원이하">6만원 이하 상품 보기</button>
+  </div>
+  
 
   <script>
     var products = [
@@ -36,6 +46,33 @@
       { id: 1, price: 50000, title: "Springfield Shirt" },
       { id: 2, price: 60000, title: "Black Monastery" },
     ];
+
+
+
+  $('#price').on('click', ()=>{
+    var 가격낮은순 = products.sort((a,b)=>{
+      return (a.price-b.price)
+    })
+    $('.row').html("")
+    card(가격낮은순)
+  })
+  $('#다나가').on('click', ()=>{
+    var 다나가순 = products.sort((a,b)=>{
+      return (a.title>b.title? -1:a.name < b.name ? 1 : 0)
+    })
+    $('.row').html("")
+    card(다나가순)
+  })
+  $('#6만원이하').on('click', ()=>{
+    var 육만원이하 = products.filter((item)=>{
+      return (item.price<=60000)
+    })
+    $('.row').html("")
+    card(육만원이하)
+  })
+
+
+  
 
     function card(상품목록) {
       상품목록.forEach((item) => {
@@ -49,8 +86,7 @@
     card(products);
 
     var 클릭횟수 = 1;
-    $('.btn-danger').on('click', function (e) {
-
+    $('.btn-danger').eq(0).on('click',(e)=>{
       if (클릭횟수 <= 2) {
         $.get(`https://codingapple1.github.io/js/more${클릭횟수}.json`).done((data) => {
           console.log(data);
@@ -63,8 +99,7 @@
       }
     });
 
-
-
+  
 
   </script>
 
