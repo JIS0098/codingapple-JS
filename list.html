@@ -38,7 +38,7 @@
   <div class="container">
     <button class="btn btn-danger" id="6만원이하">6만원 이하 상품 보기</button>
   </div>
-  
+
 
   <script>
     var products = [
@@ -47,38 +47,36 @@
       { id: 2, price: 60000, title: "Black Monastery" },
     ];
 
-
-
-  $('#price').on('click', ()=>{
-    var 가격낮은순 = products.sort((a,b)=>{
-      return (a.price-b.price)
+    $('#price').on('click', () => {
+      var 가격낮은순 = products.sort((a, b) => {
+        return (a.price - b.price)
+      })
+      $('.row').html("")
+      card(가격낮은순)
     })
-    $('.row').html("")
-    card(가격낮은순)
-  })
-  $('#다나가').on('click', ()=>{
-    var 다나가순 = products.sort((a,b)=>{
-      return (a.title>b.title? -1:a.name < b.name ? 1 : 0)
+    $('#다나가').on('click', () => {
+      var 다나가순 = products.sort((a, b) => {
+        return (a.title > b.title ? -1 : a.name < b.name ? 1 : 0)
+      })
+      $('.row').html("")
+      card(다나가순)
     })
-    $('.row').html("")
-    card(다나가순)
-  })
-  $('#6만원이하').on('click', ()=>{
-    var 육만원이하 = products.filter((item)=>{
-      return (item.price<=60000)
+    $('#6만원이하').on('click', () => {
+      var 육만원이하 = products.filter((item) => {
+        return (item.price <= 60000)
+      })
+      $('.row').html("")
+      card(육만원이하)
     })
-    $('.row').html("")
-    card(육만원이하)
-  })
-
-
-  
 
     function card(상품목록) {
       상품목록.forEach((item) => {
         var product = `<div class="col-sm-4"><img src="https://via.placeholder.com/600" class="w-100">
           <h5>${item.title}</h5>
-          <p>가격 : ${item.price}</p></div>`
+          <p>가격 : ${item.price}</p>
+          <button class="buy">구매</button>
+          </div>`
+
         $('.row').append(product)
       })
     }
@@ -86,7 +84,7 @@
     card(products);
 
     var 클릭횟수 = 1;
-    $('.btn-danger').eq(0).on('click',(e)=>{
+    $('.btn-danger').eq(0).on('click', (e) => {
       if (클릭횟수 <= 2) {
         $.get(`https://codingapple1.github.io/js/more${클릭횟수}.json`).done((data) => {
           console.log(data);
@@ -99,7 +97,28 @@
       }
     });
 
-  
+    //처음에 구매버튼을 누르면 로칼에 cart키값으로 상품명이 배열에 저장된다.
+    //내 형제요소 찾는 시블링 방법으로 상품명을 저장하자
+    // 다른 상품의 구매버튼을 누르면 만들어졌던 로칼속 cart배열에 구매버튼을 누른 상품명이 추가된다
+    //로칼에는 문자열로만 저장이되서 문자열인 배열을 다시 배열로 만들어 상품명을 추가해주세요 코드를 짜야한다.
+
+    $(".buy").on('click', (e) => {
+      var cartList = [];
+      console.log(e.currentTarget.siblings())
+      // var newCartList = JSON.stringify(cartList);
+      // localStorage.setItem('cart', newCartList);
+
+
+      // if (cartList === null) {
+      //   localStorage.setItem('cart', newCartList);
+      //   var 꺼낸거 = localStorage.getItem('cart');
+      //   꺼낸거 = JSON.parse(꺼낸거);
+      // }
+
+      // localStorage.setItem('cart', '$(".buy").nextUntil("h5")')
+      // console.log($(".buy").nextUntil("h5"))
+    })
+
 
   </script>
 
