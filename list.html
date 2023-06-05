@@ -102,8 +102,26 @@
     // 다른 상품의 구매버튼을 누르면 만들어졌던 로칼속 cart배열에 구매버튼을 누른 상품명이 추가된다
     //로칼에는 문자열로만 저장이되서 문자열인 배열을 다시 배열로 만들어 상품명을 추가해주세요 코드를 짜야한다.
 
-    $(".buy").on('click', () => {
+    
+    
+    $(".buy").on('click', (e) => {
+      var title=$(e.target).siblings('h5').html();
       
+      // 처음에는 로칼에 배열이 없으니 배열을 만들고 선택타이틀을 넣어야한다
+      // 이후 추가 되는 타이틀을 배열 생서이 아닌 수정만한다.
+      // 장바구니에 이름과 추가갯수를 저장한다.
+      //추가갯수는 변수를 따로만들어 관리하면 될듯? 
+
+      if(localStorage.getItem('cart') != null){
+        var 꺼낸거 = JSON.parse(localStorage.cart);
+        꺼낸거.push(title);
+        localStorage.setItem('cart',JSON.stringify(꺼낸거));
+      }else{
+        localStorage.setItem('cart',JSON.stringify([title]));
+      }
+      
+   
+
     })
 
 

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="main.css" />
+</head>
+<body>
+    <div>장바구니 페이지</div>
+    <div class="cart-title">
+    </div>
+ 
+
+
+
+<script>
+    var productList = JSON.parse(localStorage.cart); // 새로추가된 카트리스트
+    var saveList = [] //기존카드키르스
+    //새로추가된 카트의 아이템이 기존카드리스트에 없으면 기본카드리스트에 아이템 추가 
+    
+   
+    productList.forEach((item) => {
+        var title = `<p>${item}</P>`
+        if(saveList.includes(item)===false){
+            saveList.push(item);
+           $(".cart-title").append(title);
+        }
+
+       
+      
+       
+        //    if(saveList.includes(`${item}`)){
+        //     console.log("포함안됐다")
+        //    }
+        //만약 로칼에 중복이 없으면 html추가하고
+            //처음에 온 제품리스트를 저장한다.
+        //중복이 있으면 추가하지 않는다.
+        // var title = `<p>${item}</P>`
+        // saveList.push(item);
+
+   
+               
+            
+          
+         // 
+    });
+    
+</script>
+<script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+</body>
+</html>
