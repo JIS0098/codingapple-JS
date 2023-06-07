@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,12 +20,36 @@
 
 
 <script>
-    var productList = JSON.parse(localStorage.cart);
+    var productList = JSON.parse(localStorage.cart); // 새로추가된 카트리스트
+    var saveList = [] //기존카드키르스
+    //새로추가된 카트의 아이템이 기존카드리스트에 없으면 기본카드리스트에 아이템 추가 
     
-    productList.forEach((product)=>{
-        var product =`<p>상품명: ${product.title}<p><p>${product.num}</p>`
-        $('.cart-title').append(product);
-    })
+   
+    productList.forEach((item) => {
+        var title = `<p>${item}</P>`
+        if(saveList.includes(item)===false){
+            saveList.push(item);
+           $(".cart-title").append(title);
+        }
+
+       
+      
+       
+        //    if(saveList.includes(`${item}`)){
+        //     console.log("포함안됐다")
+        //    }
+        //만약 로칼에 중복이 없으면 html추가하고
+            //처음에 온 제품리스트를 저장한다.
+        //중복이 있으면 추가하지 않는다.
+        // var title = `<p>${item}</P>`
+        // saveList.push(item);
+
+   
+               
+            
+          
+         // 
+    });
     
 </script>
 <script
