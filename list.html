@@ -100,9 +100,7 @@
     var 검사 =[]
     $(".buy").on('click', (e) => {
       var title=$(e.target).siblings('h5').html();
-      
-
-      var product = {상품명:title , 갯수:1}
+      var product = {상품명:title , 갯수:1};
 
       if(localStorage.getItem('cart') != null){
         var 꺼낸거 = JSON.parse(localStorage.cart);
