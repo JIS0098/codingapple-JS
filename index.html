@@ -253,33 +253,65 @@
     var 클릭 = false;
     var 이동거리 = 0;
 
-    $(".slide-box")
-      .find("img")
-      .on("mousedown", (e) => {
+    $(".slide-box").eq(0).on("mousedown", (e) => {
         클릭 = true;
         초기위치 = e.clientX;
       });
-    // 마우스로 이동하고있을때는  현재위치에서 초기위치 변수를 빼줘야한다.
-    // 마우스로 이동한만큼 슬라이트 컨테이너 위치도 이동한다.
-    $(".slide-box")
-      .find("img")
-      .on("mousemove", (e) => {
+    $(".slide-box").eq(0).on("mousemove", (e) => {
         이동거리 = e.clientX - 초기위치;
         if (클릭) {
           $(".slide-container").css("transform", `translateX(${이동거리}px)`);
         }
       });
-    $(".slide-box")
-      .find("img")
-      .on("mouseup", (e) => {
+    $(".slide-box").eq(0).on("mouseup", (e) => {
         클릭 = false;
         if(이동거리<=-100){
           $(".slide-container").css("transform", `translateX(-100vw)`);
         }else{
           $(".slide-container").css("transform", `translateX(00vw)`);
         }
-
       });
+
+    $(".slide-box").eq(1).on("mousedown", (e) => {
+        클릭 = true;
+        초기위치 = e.clientX;
+      });
+    $(".slide-box").eq(1).on("mousemove", (e) => {
+        이동거리 = e.clientX - 초기위치;
+        if (클릭) {
+          $(".slide-container").css("transform", `translateX:calc(${이동거리}px - 100vw)`);
+         
+        }
+      });
+    $(".slide-box").eq(1).on("mouseup", (e) => {
+        클릭 = false;
+        if(이동거리<=-100){
+          $(".slide-container").css("transform", `translateX(-200vw)`);
+        }else{
+          $(".slide-container").css("transform", `translateX(-100vw)`);
+        }
+      });
+
+      $(".slide-box").eq(2).on("mousedown", (e) => {
+        클릭 = true;
+        초기위치 = e.clientX;
+      });
+    $(".slide-box").eq(2).on("mousemove", (e) => {
+        이동거리 = e.clientX - 초기위치;
+        if (클릭) {
+          $(".slide-container").css("transform", `translateX:calc(${이동거리}px - 200vw)`);
+        }
+      });
+    $(".slide-box").eq(2).on("mouseup", (e) => {
+        클릭 = false;
+        if(이동거리>=100){
+          $(".slide-container").css("transform", `translateX(-100vw)`);
+        }else{
+          $(".slide-container").css("transform", `translateX(-200vw)`);
+        }
+      });
+
+
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
