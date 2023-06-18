@@ -70,7 +70,7 @@
   <div style="height: 1000px"></div>
 
   <div style="overflow: hidden">
-    <div class="slide-container" >
+    <div class="slide-container">
       <div class="slide-box">
         <img src="./car1.png" draggable="false" />
       </div>
@@ -216,100 +216,90 @@
         alert("약관읽기완료");
       }
     });
-
-    //     var 시작좌표 = 0;
-    //     var 클릭 = false;
-    //     var 이동거리 =0
-
-    //    var count = 0;
-    //     $('.slide-box').eq(0).on('mousedown', function(e){
-    //      시작좌표=e.clientX
-    //      클릭=true;
-    // })
-    //     $('.slide-box').eq(0).on('mousemove', function(e){
-    //      이동거리 = e.clientX- 시작좌표
-    //      if(클릭==true){
-    //       $('.slide-container').css('transform',`translateX(${이동거리}px)`)
-    //      }
-    // })
-    //     $('.slide-box').eq(0).on('mouseup', function(e){
-    //       count++
-    //       클릭=false;
-    //       현재위치= e.clientX;
-    //     if(-이동거리>= 150){
-    //       $('.slide-container').css('transform',`translateX(-100vw)`)
-    //     }else{
-    //       $('.slide-container').css('transform',`translateX(0vw)`)
-    //     }
-    // })
-
-    //사진을 클릭한 상태에서 100px이상 이동하고 놓았을때
-    //원래 좌표에서 이동한 후 좌표를 빼면 이동거리가 나온다.
-    //슬라이드 컨테이너가 다음사진위치로 이동한다.
-    //만약 100이하라면 슬라이트 컨테이너가 원래의 자리로 이동한다.
-
-    //눌럿을때는 현재 위치를 알아내야한다.
     var 초기위치 = 0;
     var 클릭 = false;
     var 이동거리 = 0;
 
-    $(".slide-box").eq(0).on("mousedown", (e) => {
-        클릭 = true;
-        초기위치 = e.clientX;
-      });
-    $(".slide-box").eq(0).on("mousemove", (e) => {
-        이동거리 = e.clientX - 초기위치;
-        if (클릭) {
-          $(".slide-container").css("transform", `translateX(${이동거리}px)`);
-        }
-      });
-    $(".slide-box").eq(0).on("mouseup", (e) => {
-        클릭 = false;
-        if(이동거리<=-100){
-          $(".slide-container").css("transform", `translateX(-100vw)`);
-        }else{
-          $(".slide-container").css("transform", `translateX(00vw)`);
-        }
-      });
+    $('.slide-box').eq(0).on('mousedown', (e) => {
+      초기위치 = e.clientX;
+      클릭 = true;
+    });
+    $('.slide-box').eq(0).on('mousemove', (e) => {
+      이동거리 = e.clientX - 초기위치
+      if (클릭 && 이동거리 < 0) {
+        $('.slide-container').eq(0).css('transform', `translateX(${이동거리}px)`)
+      }
+    });
+    $('.slide-box').eq(0).on('mouseup', (e) => {
+      클릭 = false;
+      if (이동거리 > -150) {
+        $('.slide-container').css('transition', 'all 0.5s').css('transform', `translateX(0vw)`)
+      } else if (이동거리 < -150) {
+        $('.slide-container').css('transition', 'all 0.5s').css('transform', `translateX(-100vw)`)
+      }
+      setTimeout(() => {
+        $('.slide-container').css('transition', 'none')
+      }, 500);
+    })
 
-    $(".slide-box").eq(1).on("mousedown", (e) => {
-        클릭 = true;
-        초기위치 = e.clientX;
-      });
-    $(".slide-box").eq(1).on("mousemove", (e) => {
-        이동거리 = e.clientX - 초기위치;
-        if (클릭) {
-          $(".slide-container").css("transform", `translateX:calc(${이동거리}px - 100vw)`);
-         
-        }
-      });
-    $(".slide-box").eq(1).on("mouseup", (e) => {
-        클릭 = false;
-        if(이동거리<=-100){
-          $(".slide-container").css("transform", `translateX(-200vw)`);
-        }else{
-          $(".slide-container").css("transform", `translateX(-100vw)`);
-        }
-      });
+    $('.slide-box').eq(1).on('mousedown', (e) => {
+      초기위치 = e.clientX;
+      클릭 = true;
+    });
+    $('.slide-box').eq(1).on('mousemove', (e) => {
+      이동거리 = e.clientX - 초기위치
+      if (클릭) {
+        $('.slide-container').css('transform', `translateX(calc(${이동거리}px - 100vw))`)
+      }
+    });
+    $('.slide-box').eq(1).on('mouseup', (e) => {
+      클릭 = false;
+      if (이동거리 > 150) {
+        $('.slide-container').css('transition', 'all 0.5s').css('transform', `translateX(0vw)`)
+      } else if (이동거리 < -150) {
+        $('.slide-container').css('transition', 'all 0.5s').css('transform', `translateX(-200vw)`)
+      } else {
+        $('.slide-container').css('transition', 'all 0.5s').css('transform', `translateX(-100vw)`)
+      }
+      setTimeout(() => {
+        $('.slide-container').css('transition', 'none')
+      }, 500);
+    });
 
-      $(".slide-box").eq(2).on("mousedown", (e) => {
-        클릭 = true;
-        초기위치 = e.clientX;
-      });
-    $(".slide-box").eq(2).on("mousemove", (e) => {
-        이동거리 = e.clientX - 초기위치;
-        if (클릭) {
-          $(".slide-container").css("transform", `translateX:calc(${이동거리}px - 200vw)`);
-        }
-      });
-    $(".slide-box").eq(2).on("mouseup", (e) => {
-        클릭 = false;
-        if(이동거리>=100){
-          $(".slide-container").css("transform", `translateX(-100vw)`);
-        }else{
-          $(".slide-container").css("transform", `translateX(-200vw)`);
-        }
-      });
+    $('.slide-box').eq(2).on('mousedown', (e) => {
+      초기위치 = e.clientX;
+      클릭 = true;
+    });
+    $('.slide-box').eq(2).on('mousemove', (e) => {
+      이동거리 = e.clientX - 초기위치
+      if (클릭) {
+        $('.slide-container').css('transform', `translateX(calc(${이동거리}px - 200vw))`)
+      }
+    });
+    $('.slide-box').eq(2).on('mouseup', (e) => {
+      클릭 = false;
+      if (이동거리 > 150) {
+        $('.slide-container').css('transition', 'all 0.5s').css('transform', `translateX(-100vw)`)
+      }
+      setTimeout(() => {
+        $('.slide-container').css('transition', 'none')
+      }, 500);
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   </script>
