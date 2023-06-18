@@ -272,7 +272,7 @@
     });
     $('.slide-box').eq(2).on('mousemove', (e) => {
       이동거리 = e.clientX - 초기위치
-      if (클릭) {
+      if (클릭 && 이동거리>0) {
         $('.slide-container').css('transform', `translateX(calc(${이동거리}px - 200vw))`)
       }
     });
